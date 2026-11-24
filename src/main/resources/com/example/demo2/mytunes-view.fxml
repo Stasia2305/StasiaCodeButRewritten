@@ -1,83 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.demo2.gui.MyTunesController">
+<BorderPane fx:controller="com.example.demo2.gui.MyTunesController"
+            prefHeight="840.0" prefWidth="1320.0"
+            styleClass="app-root"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <ToolBar>
-            <Button text="Play" onAction="#onPlay"/>
-            <Button text="Pause" onAction="#onPause"/>
-            <Button text="Stop" onAction="#onStop"/>
-            <Separator/>
-            <Label text="Status:"/>
-            <Label fx:id="statusLabel" text="Idle"/>
-        </ToolBar>
+        <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="header">
+            <padding>
+                <Insets bottom="18.0" left="26.0" right="26.0" top="18.0"/>
+            </padding>
+            <VBox spacing="1.0">
+                <Label styleClass="brand" text="MyTunes"/>
+                <Label styleClass="brand-sub" text="music &amp; video library"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" styleClass="status" text="Idle"/>
+            <TextField fx:id="filterField" onAction="#onFilterToggle" prefWidth="230.0"
+                       promptText="Search songs or artists" styleClass="search-field"/>
+            <Button fx:id="filterButton" onAction="#onFilterToggle" styleClass="pill-button" text="Filter"/>
+            <Button onAction="#onAddFromLink" styleClass="pill-button" text="Add link"/>
+            <Button onAction="#onNewSong" styleClass="pill-button accent" text="+ New Track"/>
+        </HBox>
     </top>
     <center>
         <BorderPane>
             <left>
-                <VBox spacing="6.0">
+                <VBox prefWidth="250.0" spacing="12.0" styleClass="card">
+                    <BorderPane.margin>
+                        <Insets bottom="14.0" left="24.0" right="8.0" top="14.0"/>
+                    </BorderPane.margin>
                     <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
+                        <Insets bottom="16.0" left="16.0" right="16.0" top="18.0"/>
                     </padding>
-                    <Label text="Playlists">
-                        <font><Font size="14"/></font>
-                    </Label>
-                    <ListView fx:id="playlistList" prefWidth="220"/>
+                    <Label styleClass="section-title" text="PLAYLISTS"/>
+                    <ListView fx:id="playlistList" VBox.vgrow="ALWAYS"/>
                     <HBox spacing="6.0">
-                        <Button text="New..." onAction="#onNewPlaylist"/>
-                        <Button text="Edit..." onAction="#onEditPlaylist"/>
-                        <Button text="Delete" onAction="#onDeletePlaylist"/>
+                        <Button maxWidth="Infinity" onAction="#onNewPlaylist" styleClass="pill-button"
+                                text="+ New" HBox.hgrow="ALWAYS"/>
+                        <Button maxWidth="Infinity" onAction="#onEditPlaylist" styleClass="pill-button"
+                                text="Rename" HBox.hgrow="ALWAYS"/>
+                        <Button maxWidth="Infinity" onAction="#onDeletePlaylist" styleClass="pill-button danger"
+                                text="Delete" HBox.hgrow="ALWAYS"/>
                     </HBox>
                 </VBox>
             </left>
             <center>
-                <VBox spacing="6.0">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-                    <Label text="Songs in playlist">
-                        <font><Font size="14"/></font>
-                    </Label>
-                    <ListView fx:id="playlistSongsList"/>
-                    <HBox spacing="6.0">
-                        <Button text="⬆" onAction="#onMoveUp"/>
-                        <Button text="⬇" onAction="#onMoveDown"/>
-                        <Button text="Delete" onAction="#onRemoveFromPlaylist"/>
-                    </HBox>
-                </VBox>
+                <SplitPane dividerPositions="0.48" styleClass="work-split">
+                    <BorderPane.margin>
+                        <Insets bottom="14.0" top="14.0"/>
+                    </BorderPane.margin>
+                    <items>
+                        <VBox spacing="10.0" styleClass="card">
+                            <padding>
+                                <Insets bottom="16.0" left="18.0" right="18.0" top="18.0"/>
+                            </padding>
+                            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                <VBox spacing="2.0">
+                                    <Label styleClass="section-title" text="PLAYLIST TRACKS"/>
+                                    <Label fx:id="playlistNameLabel" styleClass="section-subtitle"
+                                           text="No playlist selected"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button onAction="#onMoveUp" styleClass="icon-button" text="↑"/>
+                                <Button onAction="#onMoveDown" styleClass="icon-button" text="↓"/>
+                                <Button onAction="#onRemoveFromPlaylist" styleClass="pill-button danger"
+                                        text="Remove"/>
+                            </HBox>
+                            <ListView fx:id="playlistSongsList" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                        <VBox spacing="10.0" styleClass="card">
+                            <padding>
+                                <Insets bottom="16.0" left="18.0" right="18.0" top="18.0"/>
+                            </padding>
+                            <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                <VBox spacing="2.0">
+                                    <Label styleClass="section-title" text="LIBRARY"/>
+                                    <Label fx:id="libraryCountLabel" styleClass="section-subtitle"
+                                           text="0 tracks"/>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button onAction="#onAddToPlaylist" styleClass="pill-button"
+                                        text="Add to playlist"/>
+                                <Button onAction="#onEditSong" styleClass="pill-button" text="Edit"/>
+                                <Button onAction="#onDeleteSong" styleClass="pill-button danger" text="Delete"/>
+                            </HBox>
+                            <TableView fx:id="songTable" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="titleCol" prefWidth="190.0" text="Title"/>
+                                    <TableColumn fx:id="artistCol" prefWidth="140.0" text="Artist"/>
+                                    <TableColumn fx:id="typeCol" prefWidth="70.0" text="Type"/>
+                                    <TableColumn fx:id="durationCol" prefWidth="80.0" text="Duration"/>
+                                </columns>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN"/>
+                                </columnResizePolicy>
+                            </TableView>
+                        </VBox>
+                    </items>
+                </SplitPane>
             </center>
             <right>
-                <VBox spacing="6.0" prefWidth="480">
+                <VBox prefWidth="380.0" spacing="14.0" styleClass="card now-card">
+                    <BorderPane.margin>
+                        <Insets bottom="14.0" left="8.0" right="24.0" top="14.0"/>
+                    </BorderPane.margin>
                     <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
+                        <Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/>
                     </padding>
-                    <Label text="All Songs">
-                        <font><Font size="14"/></font>
-                    </Label>
-                    <HBox spacing="6.0">
-                        <TextField fx:id="filterField" promptText="Filter by title or artist" HBox.hgrow="ALWAYS"/>
-                        <Button fx:id="filterButton" text="Filter" onAction="#onFilterToggle"/>
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                        <Label styleClass="section-title" text="NOW PLAYING"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="mediaBadge" styleClass="badge" text="AUDIO"/>
+                        <Button onAction="#onToggleTheater" styleClass="icon-button" text="⛶"/>
                     </HBox>
-                    <TableView fx:id="songTable" prefHeight="380">
-                        <columns>
-                            <TableColumn fx:id="titleCol" text="Title" prefWidth="180"/>
-                            <TableColumn fx:id="artistCol" text="Artist" prefWidth="140"/>
-                            <TableColumn fx:id="durationCol" text="Duration" prefWidth="90"/>
-                        </columns>
-                    </TableView>
-                    <HBox spacing="6.0">
-                        <Button text="New..." onAction="#onNewSong"/>
-                        <Button text="Edit..." onAction="#onEditSong"/>
-                        <Button text="Delete" onAction="#onDeleteSong"/>
-                        <Button text="⬅ Add to Playlist" onAction="#onAddToPlaylist"/>
-                    </HBox>
+                    <StackPane fx:id="mediaStage" minHeight="190.0" onMouseClicked="#onMediaStageClick"
+                               prefHeight="265.0" styleClass="media-stage">
+                        <Label fx:id="mediaPlaceholder" styleClass="media-placeholder" text="♪"/>
+                        <MediaView fx:id="mediaView" preserveRatio="true"/>
+                    </StackPane>
+                    <VBox spacing="3.0">
+                        <Label fx:id="nowTitle" styleClass="now-title" text="Nothing playing" wrapText="true"/>
+                        <Label fx:id="nowMeta" styleClass="now-meta" text="Pick a track to start listening"
+                               wrapText="true"/>
+                    </VBox>
+                    <Region VBox.vgrow="ALWAYS"/>
+                    <Label styleClass="hint"
+                           text="Double-click a track to play. Space toggles playback, ← → seek 5 seconds. Double-click the screen for theater mode, Esc leaves it."
+                           wrapText="true"/>
                 </VBox>
             </right>
         </BorderPane>
     </center>
+    <bottom>
+        <HBox alignment="CENTER" spacing="18.0" styleClass="playback-bar">
+            <padding>
+                <Insets bottom="16.0" left="26.0" right="26.0" top="14.0"/>
+            </padding>
+            <Button onAction="#onPrevious" styleClass="icon-button" text="◀◀"/>
+            <Button fx:id="playPauseButton" onAction="#onPlayPause" styleClass="play-button" text="▶"/>
+            <Button onAction="#onStop" styleClass="icon-button" text="■"/>
+            <Button onAction="#onNext" styleClass="icon-button" text="▶▶"/>
+            <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                <Slider fx:id="progressSlider" styleClass="seek-slider"/>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label fx:id="currentTimeLabel" styleClass="time" text="0:00"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="totalTimeLabel" styleClass="time" text="0:00"/>
+                </HBox>
+            </VBox>
+            <HBox alignment="CENTER" prefWidth="160.0" spacing="8.0">
+                <Label styleClass="label-tiny" text="VOL"/>
+                <Slider fx:id="volumeSlider" max="100.0" styleClass="volume-slider" value="75.0"
+                        HBox.hgrow="ALWAYS"/>
+            </HBox>
+        </HBox>
+    </bottom>
 </BorderPane>

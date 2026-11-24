@@ -13,8 +13,14 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("mytunes-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1100, 650);
-            stage.setTitle("MyTunes");
+            Scene scene = new Scene(fxmlLoader.load(), 1320, 840);
+            var stylesheet = HelloApplication.class.getResource("app.css");
+            if (stylesheet != null) {
+                scene.getStylesheets().add(stylesheet.toExternalForm());
+            }
+            stage.setTitle("MyTunes — Music & Video");
+            stage.setMinWidth(1080);
+            stage.setMinHeight(700);
             stage.setScene(scene);
             stage.show();
         } catch (Exception ex) {

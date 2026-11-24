@@ -37,10 +37,12 @@ public class SongService {
             throw new SQLException("Please make sure the file path is correct");
         }
 
-        //Then make sure the actual file exists (mby? idk if we need this)
-        File file = new File(s.getFilePath());
-        if (!file.exists()){
-            throw new SQLException("File does not exist" + s.getFilePath());
+        //Local files must exist; direct media links are validated by the player instead
+        if (!s.isUrl()) {
+            File file = new File(s.getFilePath());
+            if (!file.exists()){
+                throw new SQLException("File does not exist" + s.getFilePath());
+            }
         }
 
         return songDAO.insert(s);

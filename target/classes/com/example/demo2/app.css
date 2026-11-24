@@ -1,0 +1,490 @@
+/* ============================================================
+   MyTunes — dark "late night studio" theme
+   ============================================================ */
+
+.root {
+    -mt-text: #ECE8F8;
+    -mt-muted: #948DAE;
+    -mt-faint: rgba(236, 232, 248, 0.38);
+    -mt-accent: #8B5CF6;
+    -mt-pink: #FF5C8A;
+    -mt-accent-soft: rgba(139, 92, 246, 0.22);
+    -mt-border: rgba(255, 255, 255, 0.08);
+    -mt-surface: rgba(255, 255, 255, 0.05);
+    -mt-surface-hover: rgba(255, 255, 255, 0.10);
+
+    -fx-font-size: 13px;
+}
+
+.app-root {
+    -fx-background-color: linear-gradient(to bottom right, #0A0913, #151024 55%, #1D1332);
+}
+
+.label {
+    -fx-text-fill: -mt-text;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+    -fx-background-color: rgba(10, 9, 17, 0.55);
+    -fx-border-color: transparent transparent -mt-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.brand {
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.brand-sub {
+    -fx-font-size: 10px;
+    -fx-text-fill: -mt-muted;
+}
+
+.status {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 11px;
+}
+
+.section-title {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.section-subtitle {
+    -fx-text-fill: -mt-faint;
+    -fx-font-size: 11px;
+}
+
+.hint {
+    -fx-text-fill: -mt-faint;
+    -fx-font-size: 10.5px;
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+    -fx-background-color: rgba(255, 255, 255, 0.035);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: -mt-border;
+    -fx-border-width: 1;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+    -fx-focus-traversable: false;
+}
+
+.pill-button {
+    -fx-background-color: -mt-surface;
+    -fx-text-fill: -mt-text;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-padding: 7 15;
+    -fx-font-size: 11.5px;
+    -fx-cursor: hand;
+}
+
+.pill-button:hover {
+    -fx-background-color: -mt-surface-hover;
+    -fx-text-fill: #FFFFFF;
+}
+
+.pill-button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+}
+
+.pill-button.accent {
+    -fx-background-color: linear-gradient(to right, #8B5CF6, #FF5C8A);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.pill-button.accent:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255, 92, 138, 0.45), 16, 0.25, 0, 3);
+}
+
+.pill-button.danger {
+    -fx-text-fill: #FF9BB4;
+}
+
+.pill-button.danger:hover {
+    -fx-background-color: rgba(255, 92, 138, 0.18);
+    -fx-text-fill: #FFC2D1;
+}
+
+.icon-button {
+    -fx-background-color: -mt-surface;
+    -fx-text-fill: -mt-text;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+    -fx-padding: 0;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+}
+
+.icon-button:hover {
+    -fx-background-color: -mt-surface-hover;
+    -fx-text-fill: #FFFFFF;
+}
+
+.play-button {
+    -fx-background-color: linear-gradient(to bottom right, #A78BFA, #8B5CF6);
+    -fx-text-fill: #12101C;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-padding: 0;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(139, 92, 246, 0.55), 22, 0.28, 0, 4);
+}
+
+.play-button:hover {
+    -fx-background-color: linear-gradient(to bottom right, #C4B5FD, #A78BFA);
+    -fx-effect: dropshadow(gaussian, rgba(167, 139, 250, 0.7), 26, 0.3, 0, 5);
+}
+
+/* ---------- Text fields ---------- */
+
+.text-field.search-field,
+.text-field {
+    -fx-background-color: -mt-surface;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-text-fill: -mt-text;
+    -fx-prompt-text-fill: -mt-faint;
+    -fx-padding: 8 16;
+}
+
+.text-field:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-border-color: rgba(167, 139, 250, 0.75);
+    -fx-border-width: 1;
+}
+
+/* ---------- List views ---------- */
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-text-fill: -mt-text;
+    -fx-padding: 9 10;
+    -fx-background-radius: 12;
+}
+
+.list-view .list-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:filled:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.list-view .list-cell:filled:selected,
+.list-view:focused .list-cell:filled:selected,
+.list-view:focused .list-cell:filled:selected:hover {
+    -fx-background-color: -mt-accent-soft;
+    -fx-text-fill: #FFFFFF;
+}
+
+.playlist-name {
+    -fx-text-fill: -mt-text;
+    -fx-font-size: 12.5px;
+}
+
+.playlist-icon {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 12px;
+}
+
+.track-title {
+    -fx-text-fill: -mt-text;
+    -fx-font-size: 12.5px;
+    -fx-font-weight: bold;
+}
+
+.track-meta {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 10.5px;
+}
+
+.list-view .placeholder .label {
+    -fx-text-fill: -mt-faint;
+    -fx-font-size: 11.5px;
+}
+
+/* ---------- Table view ---------- */
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-padding: 8 10 10 10;
+    -fx-border-color: transparent transparent -mt-border transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-table-cell-border-color: transparent;
+    -fx-cell-size: 40;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.017);
+}
+
+.table-view .table-row-cell:filled:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-view .table-row-cell:filled:selected,
+.table-view:focused .table-row-cell:filled:selected {
+    -fx-background-color: -mt-accent-soft;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: -mt-text;
+    -fx-border-color: transparent;
+    -fx-padding: 0 10;
+    -fx-font-size: 12.5px;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: -mt-faint;
+    -fx-font-size: 11.5px;
+}
+
+/* ---------- Scroll bars ---------- */
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 9;
+}
+
+.scroll-bar:horizontal {
+    -fx-pref-height: 9;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.16);
+    -fx-background-radius: 8;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-pref-height: 0;
+    -fx-pref-width: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* ---------- Now playing ---------- */
+
+.now-card {
+    -fx-background-color: linear-gradient(to bottom right, rgba(139, 92, 246, 0.13), rgba(255, 92, 138, 0.05));
+}
+
+.media-stage {
+    -fx-background-color: linear-gradient(to bottom right, #171226, #0C0A16);
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: rgba(255, 255, 255, 0.09);
+    -fx-border-width: 1;
+}
+
+.media-placeholder {
+    -fx-text-fill: rgba(167, 139, 250, 0.35);
+    -fx-font-size: 68px;
+}
+
+.badge {
+    -fx-background-color: rgba(255, 92, 138, 0.16);
+    -fx-text-fill: #FF9BB4;
+    -fx-background-radius: 999;
+    -fx-padding: 3 11;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+}
+
+.now-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.now-meta {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 11px;
+}
+
+/* ---------- Playback bar ---------- */
+
+.playback-bar {
+    -fx-background-color: rgba(10, 9, 17, 0.72);
+    -fx-border-color: -mt-border transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.time {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 10.5px;
+}
+
+.label-tiny {
+    -fx-text-fill: -mt-muted;
+    -fx-font-size: 9px;
+    -fx-font-weight: bold;
+}
+
+.slider .track {
+    -fx-background-color: rgba(255, 255, 255, 0.13);
+    -fx-background-insets: 0;
+    -fx-background-radius: 6;
+    -fx-pref-height: 4;
+}
+
+.slider .thumb {
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-background-radius: 9;
+    -fx-pref-width: 12;
+    -fx-pref-height: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 6, 0.2, 0, 1);
+}
+
+.seek-slider:hover .thumb {
+    -fx-background-color: -mt-pink;
+}
+
+.volume-slider .thumb {
+    -fx-pref-width: 10;
+    -fx-pref-height: 10;
+}
+
+.slider:disabled {
+    -fx-opacity: 0.45;
+}
+
+/* ---------- Split pane ---------- */
+
+.work-split {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.work-split > .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 0 5 0 5;
+}
+
+/* ---------- Dialogs ---------- */
+
+.app-dialog {
+    -fx-background-color: #16131F;
+}
+
+.app-dialog .header-panel {
+    -fx-background-color: #1C1830;
+}
+
+.app-dialog .header-panel .label {
+    -fx-text-fill: #EDE9F7;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.app-dialog .content.label {
+    -fx-text-fill: #B9B2CF;
+}
+
+.app-dialog .text-field {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-background-radius: 10;
+    -fx-padding: 8 12;
+}
+
+.app-dialog .button {
+    -fx-background-color: rgba(255, 255, 255, 0.09);
+    -fx-text-fill: #EDE9F7;
+    -fx-background-radius: 999;
+    -fx-padding: 6 18;
+    -fx-cursor: hand;
+}
+
+.app-dialog .button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.16);
+}
+
+.app-dialog .button:default {
+    -fx-background-color: linear-gradient(to right, #8B5CF6, #FF5C8A);
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+}
+
+.app-dialog .check-box {
+    -fx-text-fill: #B9B2CF;
+}
+
+.app-dialog .check-box .box {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 4;
+    -fx-border-color: rgba(255, 255, 255, 0.25);
+    -fx-border-radius: 4;
+}
+
+.app-dialog .check-box:selected .mark {
+    -fx-background-color: #FF5C8A;
+}
